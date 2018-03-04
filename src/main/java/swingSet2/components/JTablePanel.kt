@@ -9,7 +9,6 @@ class JTablePanel {
     }
 
     val table by finder {
-        println("searching table")
         table()
     }
 }

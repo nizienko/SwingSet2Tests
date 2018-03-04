@@ -6,7 +6,6 @@ fun <A> waiting(timeMillis: Long = 10000, block: () -> A): A {
         try {
             return block()
         } catch (e: Throwable) {
-            println(".")
             Thread.sleep(100)
         }
     }
