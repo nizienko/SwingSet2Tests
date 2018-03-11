@@ -1,6 +1,5 @@
 package engine.extensions
 
-import helpers.range
 import org.fest.swing.awt.AWT.translate
 import org.fest.swing.core.MouseButton.LEFT_BUTTON
 import org.fest.swing.fixture.JTableFixture
@@ -17,12 +16,13 @@ fun JTableFixture.getColumnHeaderPoint(index: Int): Point = with(tableHeader().c
     return translate(this, p.x, p.y)
 }
 
-fun JTableFixture.dragColumnThroughColumns(fromIndex: Int, toIndex: Int) {
+fun JTableFixture.dragColumnToAnother(fromIndex: Int, toIndex: Int) {
     moveMouseToColumnHeader(fromIndex)
     robot.pressingMouse(LEFT_BUTTON) {
-        for (i in range(fromIndex, toIndex, 1)) {
-            moveMouseToColumnHeader(i)
-        }
+        moveMouseGradually(
+                from = getColumnHeaderPoint(fromIndex),
+                to = getColumnHeaderPoint(toIndex),
+                skippedPixels = 100)
     }
 }
 

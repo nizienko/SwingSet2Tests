@@ -1,6 +1,6 @@
 package engine.extensions
 
-import helpers.range
+import engine.helpers.goingTo
 import org.fest.swing.core.MouseButton
 import org.fest.swing.core.Robot
 import java.awt.Point
@@ -8,7 +8,7 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import kotlin.math.absoluteValue
 
-fun Robot.moveMouseGradually(from: Point, to: Point, step: Int = 1) {
+fun Robot.moveMouseGradually(from: Point, to: Point, skippedPixels: Int = 1) {
     val xLength = (to.x - from.x).absoluteValue
     val yLength = (to.y - from.y).absoluteValue
 
@@ -17,7 +17,7 @@ fun Robot.moveMouseGradually(from: Point, to: Point, step: Int = 1) {
 
     if (xLength > yLength) {
         val yFun: (x: Int) -> Int = { k.multiply(BigDecimal(it)).add(b).toInt() }
-        for (x in range(from.x, to.x, step)) {
+        for (x in from.x goingTo to.x step skippedPixels) {
             moveMouse(x, yFun(x))
         }
     } else {
@@ -26,10 +26,11 @@ fun Robot.moveMouseGradually(from: Point, to: Point, step: Int = 1) {
         } else {
             { from.x }
         }
-        for (y in range(from.y, to.y, step)) {
+        for (y in from.y goingTo to.y step skippedPixels) {
             moveMouse(xFun(y), y)
         }
     }
+    moveMouse(to)
 }
 
 

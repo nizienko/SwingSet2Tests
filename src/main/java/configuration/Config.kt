@@ -1,7 +1,7 @@
 package configuration
 
 import engine.TargetApplication
-import helpers.matcher
+import engine.helpers.matcher
 
 val app = TargetApplication(
         jarPath = "src/test/resources/targetApp/SwingSet2.jar",

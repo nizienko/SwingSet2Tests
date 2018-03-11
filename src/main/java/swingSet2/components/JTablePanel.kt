@@ -1,7 +1,7 @@
 package swingSet2.components
 
 import engine.finder
-import helpers.matcher
+import engine.helpers.matcher
 
 class JTablePanel {
     val reorderingAllowedCheckBox by finder {

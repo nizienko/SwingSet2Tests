@@ -1,7 +1,7 @@
 package jTable
 
 import configuration.app
-import helpers.waiting
+import engine.helpers.waiting
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import swingSet2.SwingSet2

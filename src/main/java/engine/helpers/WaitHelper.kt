@@ -1,4 +1,4 @@
-package helpers
+package engine.helpers
 
 fun <A> waiting(timeMillis: Long = 10000, block: () -> A): A {
     val startTime = System.currentTimeMillis()

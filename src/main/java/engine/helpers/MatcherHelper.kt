@@ -1,4 +1,4 @@
-package helpers
+package engine.helpers
 
 import org.fest.swing.core.GenericTypeMatcher
 import java.awt.Component
