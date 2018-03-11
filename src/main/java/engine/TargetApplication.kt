@@ -28,8 +28,7 @@ data class TargetApplication(
         }
 
 
-    @Synchronized
-    private fun start() {
+    fun start() = synchronized(this) {
         if (thread == null) {
             thread = Thread(Runnable {
                 val classLoader = URLClassLoader(arrayOf<URL>(File(jarPath).toURI().toURL()))
@@ -51,12 +50,14 @@ data class TargetApplication(
         }
     }
 
+
     fun stop() {
         synchronized(this) {
             robot?.cleanUp()
             robot = null
+            appFrame = null
+            thread!!.join()
+            thread = null
         }
-        appFrame = null
-        thread = null
     }
 }
