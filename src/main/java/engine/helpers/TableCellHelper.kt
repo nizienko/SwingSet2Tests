@@ -2,6 +2,7 @@ package engine.helpers
 
 import engine.extensions.pressingKey
 import org.fest.swing.core.MouseButton
+import org.fest.swing.data.TableCell
 import org.fest.swing.fixture.JTableFixture
 import java.awt.event.KeyEvent
 import javax.swing.JTable
@@ -13,7 +14,7 @@ fun JTableFixture.clickCells(click: TableCellClicker.() -> Unit) {
 
 class TableCellClicker(private val table: JTableFixture) {
     fun cell(row: Int, column: Int) =
-            table.click(org.fest.swing.data.TableCell
+            table.click(TableCell
                     .row(row)
                     .column(column),
                     MouseButton.LEFT_BUTTON)!!
