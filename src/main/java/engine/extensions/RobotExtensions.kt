@@ -39,3 +39,9 @@ fun Robot.pressingMouse(button: MouseButton, block: Robot.() -> Unit) {
     block()
     this.releaseMouse(button)
 }
+
+fun Robot.pressingKey(keyCode: Int, block: Robot.() -> Unit) {
+    this.pressKey(keyCode)
+    block()
+    this.releaseKey(keyCode)
+}

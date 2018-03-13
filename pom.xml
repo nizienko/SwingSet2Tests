@@ -34,13 +34,11 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test</artifactId>
             <version>${kotlin.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.amshove.kluent</groupId>
             <artifactId>kluent</artifactId>
             <version>1.35</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

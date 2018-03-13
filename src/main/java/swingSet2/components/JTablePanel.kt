@@ -16,6 +16,18 @@ class JTablePanel {
         checkBox(matcher { it.text == "Vert. Lines" })
     }
 
+    val rowSelectionCheckBox by finder {
+        checkBox(matcher { it.text == "Row selection" })
+    }
+
+    val columnSelectionCheckBox by finder {
+        checkBox(matcher { it.text == "Column selection" })
+    }
+
+    val selectionModeComboBox by finder {
+        comboBox(matcher { it.getItemAt(0).toString() == "Single" })
+    }
+
     val table by finder {
         table()
     }
