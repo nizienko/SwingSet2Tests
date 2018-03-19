@@ -118,8 +118,7 @@ class ReorderingTest : JTableTestSuite() {
                 moveMouse(middlePoint)
                 moveMouseGradually(
                         from = middlePoint,
-                        to = middlePoint.let { Point(it.x + 5, it.y) },
-                        skippedPixels = 1
+                        to = middlePoint.let { Point(it.x + 5, it.y) }
                 )
             }
             getColumnNames() comparingWith columnNamesBefore shouldHasEqualValuesOn mapOf(

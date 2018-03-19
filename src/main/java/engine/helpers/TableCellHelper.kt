@@ -23,7 +23,7 @@ class TableCellClicker(private val table: JTableFixture) {
 
     fun pressingShift(click: TableCellClicker.() -> Unit) = pressingKey(KeyEvent.VK_SHIFT, click)
 
-    fun pressingKey(keyCode: Int, click: TableCellClicker.() -> Unit) {
+    fun pressingKey(keyCode: Int, click: TableCellClicker.() -> Unit = {}) {
         val cellClicker = this
         table.robot.pressingKey(keyCode) {
             cellClicker.click()
@@ -37,49 +37,59 @@ fun JTableFixture.checkCellsSelection(check: TableCellSelectedChecker.() -> Unit
 }
 
 class TableCellSelectedChecker(private val table: JTableFixture) {
-    fun rowSelected(row: Int, exceptCellAtColumn: Int? = null) {
+    fun rowsShouldBeSelected(rows: List<Int>, exceptColumns: List<Int> = emptyList()) {
         with(table.component()) {
-            for (c in 0 until columnCount) {
-                if (exceptCellAtColumn != null && c == exceptCellAtColumn) {
-                    cellShouldNotBeSelected(row, c)
-                } else {
-                    cellShouldBeSelected(row, c)
+            rows.forEach { r ->
+                for (c in 0 until columnCount) {
+                    if (exceptColumns.contains(c)) {
+                        cellShouldNotBeSelected(r, c)
+                    } else {
+                        cellShouldBeSelected(r, c)
+                    }
                 }
             }
         }
     }
 
-    fun columnSelected(column: Int, exceptCellAtRow: Int? = null) {
+
+    fun columnsShouldBeSelected(columns: List<Int>, exceptRows: List<Int> = emptyList()) {
         with(table.component()) {
-            for (r in 0 until rowCount) {
-                if (exceptCellAtRow != null && r == exceptCellAtRow) {
-                    cellShouldNotBeSelected(r, column)
-                } else {
-                    cellShouldBeSelected(r, column)
+            columns.forEach { c ->
+                for (r in 0 until rowCount) {
+                    if (exceptRows.contains(r)) {
+                        cellShouldNotBeSelected(r, c)
+                    } else {
+                        cellShouldBeSelected(r, c)
+                    }
                 }
             }
         }
     }
 
-    fun rowIsNotSelected(row: Int, exceptCellAtColumn: Int? = null) {
+    fun rowsShouldNotBeSelected(rows: List<Int>, exceptColumns: List<Int> = emptyList()) {
         with(table.component()) {
-            for (c in 0 until columnCount) {
-                if (exceptCellAtColumn != null && c == exceptCellAtColumn) {
-                    cellShouldBeSelected(row, c)
-                } else {
-                    cellShouldNotBeSelected(row, c)
+            rows.forEach { r ->
+                for (c in 0 until columnCount) {
+                    if (exceptColumns.contains(c)) {
+                        cellShouldBeSelected(r, c)
+                    } else {
+                        cellShouldNotBeSelected(r, c)
+                    }
                 }
             }
         }
     }
 
-    fun columnIsNotSelected(column: Int, exceptCellAtRow: Int? = null) {
+
+    fun columnsShouldNotBeSelected(columns: List<Int>, exceptRows: List<Int> = emptyList()) {
         with(table.component()) {
-            for (r in 0 until rowCount) {
-                if (exceptCellAtRow != null && r == exceptCellAtRow) {
-                    cellShouldBeSelected(r, column)
-                } else {
-                    cellShouldNotBeSelected(r, column)
+            columns.forEach { c ->
+                for (r in 0 until rowCount) {
+                    if (exceptRows.contains(r)) {
+                        cellShouldBeSelected(r, c)
+                    } else {
+                        cellShouldNotBeSelected(r, c)
+                    }
                 }
             }
         }

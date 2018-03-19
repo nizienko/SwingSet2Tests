@@ -4,10 +4,10 @@ import engine.extensions.dragColumnToAnother
 import engine.helpers.checkCellsSelection
 import engine.helpers.clickCells
 import org.fest.swing.data.TableCell
-import org.junit.After
 import org.junit.BeforeClass
 import org.junit.Test
 import swingSet2.SwingSet2
+import java.awt.event.KeyEvent
 
 class CellSelectionSingleModeTest : JTableTestSuite() {
 
@@ -19,19 +19,6 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
     }
 
-    @After
-    fun removeAllSelections(): Unit = with(SwingSet2.jTablePanel) {
-        rowSelectionCheckBox.check()
-        columnSelectionCheckBox.check()
-        table.clickCells {
-            cell(1, 0)
-            pressingControl {
-                cell(1, 0)
-            }
-        }
-        rowSelectionCheckBox.uncheck()
-        columnSelectionCheckBox.uncheck()
-    }
 
     @Test
     fun noSelectedCellsWhenComboBoxesUnchecked(): Unit = with(SwingSet2.jTablePanel) {
@@ -58,9 +45,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
             }
         }
         table.checkCellsSelection {
-            columnIsNotSelected(1)
-            columnSelected(3)
-            rowIsNotSelected(9, exceptCellAtColumn = 3)
+            columnsShouldNotBeSelected(columns = listOf(1))
+            columnsShouldBeSelected(columns = listOf(3))
+            rowsShouldNotBeSelected(rows = listOf(9), exceptColumns = listOf(3))
         }
     }
 
@@ -76,12 +63,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
             }
         }
         table.checkCellsSelection {
-            columnIsNotSelected(1)
-            columnIsNotSelected(2)
-            columnSelected(3)
-            rowIsNotSelected(7, exceptCellAtColumn = 3)
-            rowIsNotSelected(8, exceptCellAtColumn = 3)
-            rowIsNotSelected(9, exceptCellAtColumn = 3)
+            columnsShouldNotBeSelected(columns = listOf(1, 2))
+            columnsShouldBeSelected(columns = listOf(3))
+            rowsShouldNotBeSelected(rows = listOf(7, 8, 9), exceptColumns = listOf(3))
         }
     }
 
@@ -97,7 +81,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
             }
         }
         table.checkCellsSelection {
-            columnIsNotSelected(5)
+            columnsShouldNotBeSelected(columns = listOf(5))
         }
     }
 
@@ -113,7 +97,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
             }
         }
         table.checkCellsSelection {
-            columnIsNotSelected(3)
+            columnsShouldNotBeSelected(columns = listOf(3))
         }
     }
 
@@ -128,9 +112,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
         table.dragColumnToAnother(fromIndex = 1, toIndex = 4)
         table.checkCellsSelection {
-            columnIsNotSelected(1)
-            columnSelected(4)
-            rowIsNotSelected(7, exceptCellAtColumn = 4)
+            columnsShouldNotBeSelected(columns = listOf(1))
+            columnsShouldBeSelected(columns = listOf(4))
+            rowsShouldNotBeSelected(rows = listOf(7), exceptColumns = listOf(4))
         }
     }
 
@@ -145,10 +129,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
         table.dragColumnToAnother(fromIndex = 4, toIndex = 1)
         table.checkCellsSelection {
-            columnIsNotSelected(4)
-            columnIsNotSelected(1)
-            columnSelected(2)
-            rowIsNotSelected(7, exceptCellAtColumn = 2)
+            columnsShouldNotBeSelected(listOf(4, 1))
+            columnsShouldBeSelected(columns = listOf(2))
+            rowsShouldNotBeSelected(rows = listOf(7), exceptColumns = listOf(2))
         }
     }
 
@@ -165,7 +148,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         table.tableHeader().clickColumn(1)
 
         table.checkCellsSelection {
-            columnSelected(1)
+            columnsShouldBeSelected(columns = listOf(1))
         }
     }
 
@@ -181,7 +164,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         table.tableHeader().clickColumn(5)
 
         table.checkCellsSelection {
-            columnSelected(1)
+            columnsShouldBeSelected(columns = listOf(1))
         }
     }
 
@@ -197,8 +180,8 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
             }
         }
         table.checkCellsSelection {
-            rowIsNotSelected(7)
-            rowSelected(9)
+            rowsShouldNotBeSelected(rows = listOf(7))
+            rowsShouldBeSelected(rows = listOf(9))
         }
     }
 
@@ -214,10 +197,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
             }
         }
         table.checkCellsSelection {
-            rowIsNotSelected(7)
-            rowIsNotSelected(8)
-            rowSelected(9)
-            columnIsNotSelected(3, exceptCellAtRow = 9)
+            rowsShouldNotBeSelected(rows = listOf(7, 8))
+            rowsShouldBeSelected(rows = listOf(9))
+            columnsShouldNotBeSelected(columns = listOf(3), exceptRows = listOf(9))
         }
     }
 
@@ -233,7 +215,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
             }
         }
         table.checkCellsSelection {
-            rowIsNotSelected(9)
+            rowsShouldNotBeSelected(rows = listOf(9))
         }
     }
 
@@ -249,7 +231,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
             }
         }
         table.checkCellsSelection {
-            rowIsNotSelected(9)
+            rowsShouldNotBeSelected(rows = listOf(9))
         }
     }
 
@@ -264,7 +246,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
         table.dragColumnToAnother(fromIndex = 1, toIndex = 4)
         table.checkCellsSelection {
-            rowSelected(7)
+            rowsShouldBeSelected(rows = listOf(7))
         }
     }
 
@@ -282,8 +264,8 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         val movedCell = table.cell(firstName)
 
         table.checkCellsSelection {
-            rowSelected(movedCell.row)
-            columnIsNotSelected(movedCell.column, exceptCellAtRow = movedCell.row)
+            rowsShouldBeSelected(rows = listOf(movedCell.row))
+            columnsShouldNotBeSelected(columns = listOf(movedCell.column), exceptRows = listOf(movedCell.row))
         }
     }
 
@@ -300,8 +282,8 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
         table.checkCellsSelection {
             cellIsNotSelected(7, 1)
-            rowIsNotSelected(9, exceptCellAtColumn = 3)
-            columnIsNotSelected(3, exceptCellAtRow = 9)
+            rowsShouldNotBeSelected(rows = listOf(9), exceptColumns = listOf(3))
+            columnsShouldNotBeSelected(columns = listOf(3), exceptRows = listOf(9))
         }
     }
 
@@ -318,12 +300,10 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
         table.checkCellsSelection {
             cellSelected(9, 3)
-            columnIsNotSelected(1)
-            columnIsNotSelected(2)
-            columnIsNotSelected(3, exceptCellAtRow = 9)
-            rowIsNotSelected(7)
-            rowIsNotSelected(8)
-            rowIsNotSelected(9, exceptCellAtColumn = 3)
+            columnsShouldNotBeSelected(columns = listOf(1, 2))
+            columnsShouldNotBeSelected(columns = listOf(3), exceptRows = listOf(9))
+            rowsShouldNotBeSelected(rows = listOf(7, 8))
+            rowsShouldNotBeSelected(rows = listOf(9), exceptColumns = listOf(3))
         }
     }
 
@@ -404,8 +384,8 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
         rowSelectionCheckBox.uncheck()
         table.checkCellsSelection {
-            rowIsNotSelected(7, exceptCellAtColumn = 1)
-            columnSelected(1)
+            rowsShouldNotBeSelected(rows = listOf(7), exceptColumns = listOf(1))
+            columnsShouldBeSelected(columns = listOf(1))
         }
     }
 
@@ -418,8 +398,8 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
         rowSelectionCheckBox.check()
         table.checkCellsSelection {
-            rowIsNotSelected(7, exceptCellAtColumn = 1)
-            columnIsNotSelected(1, exceptCellAtRow = 7)
+            rowsShouldNotBeSelected(rows = listOf(7), exceptColumns = listOf(1))
+            columnsShouldNotBeSelected(columns = listOf(1), exceptRows = listOf(7))
         }
     }
 
@@ -432,8 +412,8 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
         columnSelectionCheckBox.uncheck()
         table.checkCellsSelection {
-            columnIsNotSelected(1, exceptCellAtRow = 7)
-            rowSelected(7)
+            columnsShouldNotBeSelected(columns = listOf(1), exceptRows = listOf(7))
+            rowsShouldBeSelected(rows = listOf(7))
         }
     }
 
@@ -446,8 +426,8 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         }
         columnSelectionCheckBox.check()
         table.checkCellsSelection {
-            rowIsNotSelected(7, exceptCellAtColumn = 1)
-            columnIsNotSelected(1, exceptCellAtRow = 7)
+            rowsShouldNotBeSelected(rows = listOf(7), exceptColumns = listOf(1))
+            columnsShouldNotBeSelected(columns = listOf(1), exceptRows = listOf(7))
         }
     }
 
@@ -476,6 +456,53 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.check()
         table.checkCellsSelection {
             cellSelected(7, 1)
+        }
+    }
+
+    @Test
+    fun lastCellSelectedWithHotKey(): Unit = with(SwingSet2.jTablePanel) {
+        rowSelectionCheckBox.check()
+        columnSelectionCheckBox.check()
+        table.clickCells {
+            cell(2, 1)
+            pressingControl { pressingKey(KeyEvent.VK_A) }
+        }
+        table.checkCellsSelection {
+            columnsShouldNotBeSelected(columns = listOf(0, 1, 2, 3, 4))
+            columnsShouldNotBeSelected(
+                    columns = listOf(5),
+                    exceptRows = listOf(table.rowCount() - 1)
+            )
+        }
+    }
+
+    @Test
+    fun lastColumnSelectedWithHotKey(): Unit = with(SwingSet2.jTablePanel) {
+        rowSelectionCheckBox.uncheck()
+        columnSelectionCheckBox.check()
+        table.clickCells {
+            cell(2, 1)
+            pressingControl { pressingKey(KeyEvent.VK_A) }
+        }
+        table.checkCellsSelection {
+            columnsShouldNotBeSelected(columns = listOf(0, 1, 2, 3, 4))
+            columnsShouldBeSelected(columns = listOf(5))
+        }
+    }
+
+    @Test
+    fun lastRowSelectedWithHotKey(): Unit = with(SwingSet2.jTablePanel) {
+        rowSelectionCheckBox.check()
+        columnSelectionCheckBox.uncheck()
+        table.clickCells {
+            cell(2, 1)
+            pressingControl { pressingKey(KeyEvent.VK_A) }
+        }
+        table.checkCellsSelection {
+            columnsShouldNotBeSelected(
+                    columns = listOf(0, 1, 2, 3, 4),
+                    exceptRows = listOf(table.rowCount() - 1))
+            rowsShouldBeSelected(rows = listOf(table.rowCount() - 1))
         }
     }
 }

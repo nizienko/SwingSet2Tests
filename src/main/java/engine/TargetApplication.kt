@@ -56,7 +56,7 @@ data class TargetApplication(
             robot?.cleanUp()
             robot = null
             appFrame = null
-            thread!!.join()
+            thread?.join()
             thread = null
         }
     }
