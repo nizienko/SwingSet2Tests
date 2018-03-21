@@ -13,11 +13,17 @@ fun JTableFixture.clickCells(click: TableCellClicker.() -> Unit) {
 }
 
 class TableCellClicker(private val table: JTableFixture) {
-    fun cell(row: Int, column: Int) =
+    fun clickCell(row: Int, column: Int) =
             table.click(TableCell
                     .row(row)
                     .column(column),
                     MouseButton.LEFT_BUTTON)!!
+
+    fun double(click: TableCellClicker.() -> Unit) {
+        click()
+        click()
+    }
+
 
     fun pressingControl(click: TableCellClicker.() -> Unit) = pressingKey(KeyEvent.VK_CONTROL, click)
 

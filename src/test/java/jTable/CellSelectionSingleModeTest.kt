@@ -26,7 +26,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.uncheck()
 
         table.clickCells {
-            cell(1, 0)
+            clickCell(1, 0)
         }
         table.checkCellsSelection {
             cellIsNotSelected(1, 0)
@@ -39,9 +39,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.check()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
             pressingControl {
-                cell(9, 3)
+                clickCell(9, 3)
             }
         }
         table.checkCellsSelection {
@@ -57,9 +57,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.check()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
             pressingShift {
-                cell(9, 3)
+                clickCell(9, 3)
             }
         }
         table.checkCellsSelection {
@@ -75,9 +75,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.check()
 
         table.clickCells {
-            cell(9, 5)
+            clickCell(9, 5)
             pressingControl {
-                cell(9, 5)
+                clickCell(9, 5)
             }
         }
         table.checkCellsSelection {
@@ -91,9 +91,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.check()
 
         table.clickCells {
-            cell(1, 3)
+            clickCell(1, 3)
             pressingControl {
-                cell(15, 3)
+                clickCell(15, 3)
             }
         }
         table.checkCellsSelection {
@@ -108,7 +108,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         reorderingAllowedCheckBox.check()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         table.dragColumnToAnother(fromIndex = 1, toIndex = 4)
         table.checkCellsSelection {
@@ -125,7 +125,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         reorderingAllowedCheckBox.check()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         table.dragColumnToAnother(fromIndex = 4, toIndex = 1)
         table.checkCellsSelection {
@@ -143,7 +143,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         table.tableHeader().clickColumn(0)
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         table.tableHeader().clickColumn(1)
 
@@ -159,7 +159,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         table.tableHeader().clickColumn(0)
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         table.tableHeader().clickColumn(5)
 
@@ -174,9 +174,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.uncheck()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
             pressingControl {
-                cell(9, 3)
+                clickCell(9, 3)
             }
         }
         table.checkCellsSelection {
@@ -191,9 +191,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.uncheck()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
             pressingShift {
-                cell(9, 3)
+                clickCell(9, 3)
             }
         }
         table.checkCellsSelection {
@@ -209,9 +209,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.uncheck()
 
         table.clickCells {
-            cell(9, 3)
+            clickCell(9, 3)
             pressingControl {
-                cell(9, 3)
+                clickCell(9, 3)
             }
         }
         table.checkCellsSelection {
@@ -225,9 +225,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.uncheck()
 
         table.clickCells {
-            cell(9, 3)
+            clickCell(9, 3)
             pressingControl {
-                cell(9, 4)
+                clickCell(9, 4)
             }
         }
         table.checkCellsSelection {
@@ -242,7 +242,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         reorderingAllowedCheckBox.check()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         table.dragColumnToAnother(fromIndex = 1, toIndex = 4)
         table.checkCellsSelection {
@@ -257,7 +257,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         table.tableHeader().clickColumn(0)
         val firstName = table.cell(TableCell.row(7).column(0)).value()
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         table.tableHeader().clickColumn(1)
 
@@ -275,9 +275,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.check()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
             pressingControl {
-                cell(9, 3)
+                clickCell(9, 3)
             }
         }
         table.checkCellsSelection {
@@ -293,9 +293,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.check()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
             pressingShift {
-                cell(9, 3)
+                clickCell(9, 3)
             }
         }
         table.checkCellsSelection {
@@ -313,9 +313,9 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         columnSelectionCheckBox.check()
 
         table.clickCells {
-            cell(9, 5)
+            clickCell(9, 5)
             pressingControl {
-                cell(9, 5)
+                clickCell(9, 5)
             }
         }
         table.checkCellsSelection {
@@ -331,7 +331,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         reorderingAllowedCheckBox.check()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         table.dragColumnToAnother(fromIndex = 1, toIndex = 4)
         table.checkCellsSelection {
@@ -347,7 +347,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         reorderingAllowedCheckBox.check()
 
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         table.dragColumnToAnother(fromIndex = 4, toIndex = 1)
         table.checkCellsSelection {
@@ -363,7 +363,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         table.tableHeader().clickColumn(0)
         val firstName = table.cell(TableCell.row(7).column(0)).value()
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         table.tableHeader().clickColumn(1)
 
@@ -380,7 +380,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         rowSelectionCheckBox.uncheck()
         table.checkCellsSelection {
@@ -394,7 +394,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         rowSelectionCheckBox.check()
         table.checkCellsSelection {
@@ -408,7 +408,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         columnSelectionCheckBox.uncheck()
         table.checkCellsSelection {
@@ -422,7 +422,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         columnSelectionCheckBox.check()
         table.checkCellsSelection {
@@ -436,7 +436,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.uncheck()
@@ -450,7 +450,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.uncheck()
         table.clickCells {
-            cell(7, 1)
+            clickCell(7, 1)
         }
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
@@ -464,7 +464,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.clickCells {
-            cell(2, 1)
+            clickCell(2, 1)
             pressingControl { pressingKey(KeyEvent.VK_A) }
         }
         table.checkCellsSelection {
@@ -481,7 +481,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         table.clickCells {
-            cell(2, 1)
+            clickCell(2, 1)
             pressingControl { pressingKey(KeyEvent.VK_A) }
         }
         table.checkCellsSelection {
@@ -495,7 +495,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
         table.clickCells {
-            cell(2, 1)
+            clickCell(2, 1)
             pressingControl { pressingKey(KeyEvent.VK_A) }
         }
         table.checkCellsSelection {
