@@ -19,12 +19,6 @@ class TableCellClicker(private val table: JTableFixture) {
                     .column(column),
                     MouseButton.LEFT_BUTTON)!!
 
-    fun double(click: TableCellClicker.() -> Unit) {
-        click()
-        click()
-    }
-
-
     fun pressingControl(click: TableCellClicker.() -> Unit) = pressingKey(KeyEvent.VK_CONTROL, click)
 
     fun pressingShift(click: TableCellClicker.() -> Unit) = pressingKey(KeyEvent.VK_SHIFT, click)
