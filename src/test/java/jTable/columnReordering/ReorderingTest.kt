@@ -1,6 +1,7 @@
-package jTable
+package jTable.columnReordering
 
 import engine.extensions.*
+import jTable.JTableTestSuite
 import org.fest.swing.core.MouseButton.LEFT_BUTTON
 import org.junit.Test
 import swingSet2.SwingSet2

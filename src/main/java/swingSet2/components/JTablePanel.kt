@@ -28,6 +28,10 @@ class JTablePanel {
         comboBox(matcher { it.getItemAt(0).toString() == "Single" })
     }
 
+    val autoresizeModeComboBox by finder {
+        comboBox(matcher { it.getItemAt(1).toString() == "Column boundaries" })
+    }
+
     val table by finder {
         table()
     }

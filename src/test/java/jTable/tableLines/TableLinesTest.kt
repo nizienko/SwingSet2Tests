@@ -1,5 +1,6 @@
-package jTable
+package jTable.tableLines
 
+import jTable.JTableTestSuite
 import org.amshove.kluent.shouldBeFalse
 import org.amshove.kluent.shouldBeTrue
 import org.junit.Test

@@ -1,8 +1,9 @@
-package jTable
+package jTable.cellSelection
 
 import engine.extensions.dragColumnToAnother
 import engine.helpers.checkCellsSelection
 import engine.helpers.clickCells
+import jTable.JTableTestSuite
 import org.junit.BeforeClass
 import org.junit.Test
 import swingSet2.SwingSet2
@@ -114,20 +115,20 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
         columnSelectionCheckBox.uncheck()
 
         table.clickCells {
-            clickCell(0,0)
+            clickCell(0, 0)
             pressingControl { pressingKey(KeyEvent.VK_A) }
             pressingControl {
                 clickCell(17, 2)
-                clickCell(14, 4)
+                clickCell(14, 5)
                 clickCell(13, 5)
                 clickCell(12, 5)
-                clickCell(13, 1)
+                clickCell(13, 0)
             }
         }
         table.checkCellsSelection {
             columnsShouldBeSelected(
                     columns = listOf(0, 1, 2, 3, 4, 5),
-                    exceptRows =  listOf(17, 14, 12)
+                    exceptRows = listOf(17, 14, 12)
             )
         }
     }
@@ -190,7 +191,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
         columnSelectionCheckBox.check()
 
         table.clickCells {
-            clickCell(0,0)
+            clickCell(0, 0)
             pressingControl { pressingKey(KeyEvent.VK_A) }
             pressingControl {
                 clickCell(17, 2)

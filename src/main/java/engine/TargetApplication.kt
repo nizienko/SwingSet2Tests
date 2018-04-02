@@ -16,7 +16,10 @@ data class TargetApplication(
         private val frameMatcher: GenericTypeMatcher<Frame>) {
 
     private var thread: Thread? = null
+
+    @Volatile
     private var appFrame: FrameFixture? = null
+
     private var robot: Robot? = null
 
     val mainFrame: FrameFixture

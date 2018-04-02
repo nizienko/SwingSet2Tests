@@ -1,19 +1,45 @@
 package engine.extensions
 
+import engine.extensions.ColumnHeaderPart.*
 import org.fest.swing.awt.AWT.translate
 import org.fest.swing.core.MouseButton.LEFT_BUTTON
 import org.fest.swing.fixture.JTableFixture
 import java.awt.Point
 
-
-fun JTableFixture.moveMouseToColumnHeader(index: Int) = with(tableHeader().component()) {
-    robot.moveMouse(getColumnHeaderPoint(index))
+enum class ColumnHeaderPart {
+    CENTER, LEFT, RIGHT, TOP, BOTTOM
 }
 
-fun JTableFixture.getColumnHeaderPoint(index: Int): Point = with(tableHeader().component()) {
+fun JTableFixture.moveMouseToColumnHeader(index: Int, part: ColumnHeaderPart = CENTER) =
+        with(tableHeader().component()) {
+            robot.moveMouse(getColumnHeaderPoint(index, part))
+        }
+
+fun JTableFixture.getColumnHeaderPoint(index: Int, part: ColumnHeaderPart = CENTER): Point =
+        with(tableHeader().component()) {
     val r = getHeaderRect(index)
-    val p = Point(r.x + r.width / 2, r.y + r.height / 2)
-    return translate(this, p.x, p.y)
+            when (part) {
+                CENTER -> {
+                    val p = Point(r.x + r.width / 2, r.y + r.height / 2)
+                    return translate(this, p.x, p.y)
+                }
+                LEFT -> {
+                    val p = Point(r.x, r.y + r.height / 2)
+                    return translate(this, p.x, p.y)
+                }
+                RIGHT -> {
+                    val p = Point(r.x + r.width, r.y + r.height / 2)
+                    return translate(this, p.x, p.y)
+                }
+                TOP -> {
+                    val p = Point(r.x + r.width / 2, r.y)
+                    return translate(this, p.x, p.y)
+                }
+                BOTTOM -> {
+                    val p = Point(r.x + r.width / 2, r.y + r.height)
+                    return translate(this, p.x, p.y)
+                }
+            }
 }
 
 fun JTableFixture.dragColumnToAnother(fromIndex: Int, toIndex: Int) {

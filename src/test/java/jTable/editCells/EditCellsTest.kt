@@ -1,7 +1,8 @@
-package jTable
+package jTable.editCells
 
 import engine.extensions.pressingKey
 import engine.helpers.clickCells
+import jTable.JTableTestSuite
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldNotEqual
 import org.fest.swing.data.TableCell
@@ -65,7 +66,8 @@ class EditCellsTest: JTableTestSuite() {
             enterText("0.123")
             pressAndReleaseKey(VK_ENTER)
         }
-        table.cell(TableCell.row(10).column(4)).value().toBigDecimal() shouldEqual BigDecimal("0.123")
+        table.cell(TableCell.row(10).column(4)).value().replace(",", ".")
+                .toBigDecimal() shouldEqual BigDecimal("0.123")
     }
 
 
