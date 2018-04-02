@@ -9,21 +9,21 @@ import org.junit.Test
 import swingSet2.SwingSet2
 import java.awt.Point
 
-class ColumnAutoresizeModeColumnBoundariesTest : JTableTestSuite() {
+class ColumnAutoresizeLastColumnTest: JTableTestSuite() {
     companion object {
         @JvmStatic
         @BeforeClass
         fun switchAutoresizeOff() {
-            SwingSet2.jTablePanel.autoresizeModeComboBox.selectItem("Column boundaries")
+            SwingSet2.jTablePanel.autoresizeModeComboBox.selectItem("Last column")
         }
     }
 
     @Test
-    fun onlyTwoColumnsResized(): Unit = with(SwingSet2.jTablePanel) {
+    fun lastColumnsResized(): Unit = with(SwingSet2.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {
-            val targetPoint = getColumnHeaderPoint(0, ColumnHeaderPart.RIGHT).let { Point(it.x + 20, it.y) }
+            val targetPoint = getColumnHeaderPoint(0, ColumnHeaderPart.RIGHT).let { Point(it.x + 40, it.y) }
             moveMouseToColumnHeader(0, ColumnHeaderPart.RIGHT)
             with(robot) {
                 pressingMouse(MouseButton.LEFT_BUTTON) {
@@ -34,9 +34,9 @@ class ColumnAutoresizeModeColumnBoundariesTest : JTableTestSuite() {
 
         val columnWidthsAfter = table.getColumnsWidth()
 
-        columnWidthsAfter[0] shouldEqual columnWidthsBefore[0] + 20
-        columnWidthsAfter[1] shouldEqual columnWidthsBefore[1] - 20
-        (2..5).forEach {
+        columnWidthsAfter[0] shouldEqual columnWidthsBefore[0] + 40
+        columnWidthsAfter[5] shouldEqual columnWidthsBefore[5] - 40
+        (1..4).forEach {
             columnWidthsAfter[it] shouldEqual columnWidthsBefore[it]
         }
     }

@@ -12,7 +12,10 @@ fun Robot.moveMouseGradually(from: Point, to: Point, skippedPixels: Int = 1) {
     val xLength = (to.x - from.x).absoluteValue
     val yLength = (to.y - from.y).absoluteValue
 
-    val k = BigDecimal(from.y - to.y).divide(BigDecimal(from.x - to.x), 2, RoundingMode.DOWN)
+    val k = try {
+        BigDecimal(from.y - to.y).divide(BigDecimal(from.x - to.x), 2, RoundingMode.DOWN)
+    } catch (e: ArithmeticException) { BigDecimal.ZERO }
+
     val b = BigDecimal(from.y).subtract(k.multiply(BigDecimal(from.x)))
 
     if (xLength > yLength) {

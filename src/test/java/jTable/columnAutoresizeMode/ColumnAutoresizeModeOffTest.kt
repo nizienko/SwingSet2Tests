@@ -2,6 +2,7 @@ package jTable.columnAutoresizeMode
 
 import engine.extensions.ColumnHeaderPart.RIGHT
 import engine.extensions.getColumnHeaderPoint
+import engine.extensions.getColumnsWidth
 import engine.extensions.moveMouseToColumnHeader
 import engine.extensions.pressingMouse
 import jTable.JTableTestSuite
@@ -23,9 +24,7 @@ class ColumnAutoresizeModeOffTest : JTableTestSuite() {
 
     @Test
     fun onlyOneColumnsResized(): Unit = with(SwingSet2.jTablePanel) {
-        val columnWidthsBefore = (0..5).map {
-            table.tableHeader().component().getHeaderRect(it).width
-        }
+        val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {
             val targetPoint = getColumnHeaderPoint(0, RIGHT).let { Point(it.x + 20, it.y) }
@@ -37,9 +36,7 @@ class ColumnAutoresizeModeOffTest : JTableTestSuite() {
             }
         }
 
-        val columnWidthsAfter = (0..5).map {
-            table.tableHeader().component().getHeaderRect(it).width
-        }
+        val columnWidthsAfter = table.getColumnsWidth()
 
         columnWidthsAfter[0] shouldEqual columnWidthsBefore[0] + 20
         (1..5).forEach {
