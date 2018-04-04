@@ -1,6 +1,6 @@
 package jTable.columnReordering
 
-import engine.extensions.*
+import engine.helpers.*
 import jTable.JTableTestSuite
 import org.fest.swing.core.MouseButton.LEFT_BUTTON
 import org.junit.Test

@@ -1,7 +1,7 @@
 package jTable.editCells
 
-import engine.extensions.pressingKey
 import engine.helpers.clickCells
+import engine.helpers.pressingKey
 import jTable.JTableTestSuite
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldNotEqual

@@ -1,8 +1,7 @@
 package jTable.columnAutoresizeMode
 
-import engine.extensions.*
+import engine.helpers.*
 import jTable.JTableTestSuite
-import org.amshove.kluent.*
 import org.fest.swing.core.MouseButton
 import org.junit.BeforeClass
 import org.junit.Test
@@ -36,12 +35,12 @@ class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
         }
         val columnWidthsAfter = table.getColumnsWidth()
 
-        columnWidthsAfter[0] shouldEqual columnWidthsBefore[0] + 40
+        columnWidthsAfter[0] shouldBeBetween columnWidthsBefore[0] + 35 and columnWidthsBefore[0] + 40
         (1..3).forEach {
-            columnWidthsAfter[it] shouldEqual columnWidthsBefore[it]
+            columnWidthsAfter[it] shouldBeBetween columnWidthsBefore[it] - 3 and columnWidthsBefore[it]
         }
         (4..5).forEach {
-            columnWidthsAfter[it] shouldEqual columnWidthsBefore[it] - 20
+            columnWidthsAfter[it] shouldBeBetween columnWidthsBefore[it] - 20 and columnWidthsBefore[it] - 15
         }
     }
 
@@ -64,11 +63,11 @@ class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
         }
         val columnWidthsAfter = table.getColumnsWidth()
 
-        columnWidthsAfter[1] shouldBeGreaterOrEqualTo columnWidthsBefore[1] + 30
+        columnWidthsAfter[1] shouldBeBetween columnWidthsBefore[1] + 30 and columnWidthsBefore[1] + 40
         (2..5).forEach {
-            columnWidthsAfter[it] shouldBeLessThan columnWidthsBefore[it] - 3
+            columnWidthsAfter[it] shouldBeBetween columnWidthsBefore[it] - 10 and columnWidthsBefore[it] - 2
         }
-        columnWidthsAfter[0] shouldBeLessThan columnWidthsBefore[0] - 3
+        columnWidthsAfter[0] shouldBeBetween columnWidthsBefore[0] - 10 and columnWidthsBefore[0] - 2
     }
 
     @Test
@@ -90,12 +89,12 @@ class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
 
         val columnWidthsAfter = table.getColumnsWidth()
 
-        columnWidthsAfter[0] shouldEqual columnWidthsBefore[0] - 40
+        columnWidthsAfter[0] shouldBeBetween columnWidthsBefore[0] - 40 and columnWidthsBefore[0] - 35
         (1..3).forEach {
-            columnWidthsAfter[it] shouldEqual columnWidthsBefore[it]
+            columnWidthsAfter[it] shouldBeBetween columnWidthsBefore[it] and columnWidthsBefore[it] + 5
         }
         (4..5).forEach {
-            columnWidthsAfter[it] shouldEqual columnWidthsBefore[it] + 20
+            columnWidthsAfter[it] shouldBeBetween columnWidthsBefore[it] + 20 and columnWidthsBefore[it] + 25
         }
     }
 
@@ -118,10 +117,10 @@ class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
         }
         val columnWidthsAfter = table.getColumnsWidth()
 
-        columnWidthsAfter[1] shouldBeLessOrEqualTo columnWidthsBefore[1] - 30
+        columnWidthsAfter[1] shouldBeBetween columnWidthsBefore[1] - 40 and columnWidthsBefore[1] - 30
         (2..5).forEach {
-            columnWidthsAfter[it] shouldBeGreaterThan columnWidthsBefore[it] + 5
+            columnWidthsAfter[it] shouldBeBetween columnWidthsBefore[it] + 2 and columnWidthsBefore[it] + 10
         }
-        columnWidthsAfter[0] shouldBeGreaterThan columnWidthsBefore[0] + 5
+        columnWidthsAfter[0] shouldBeBetween columnWidthsBefore[0] + 2 and columnWidthsBefore[0] + 10
     }
 }

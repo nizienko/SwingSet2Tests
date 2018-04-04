@@ -1,6 +1,5 @@
 package engine.helpers
 
-import engine.extensions.pressingKey
 import org.fest.swing.core.MouseButton
 import org.fest.swing.data.TableCell
 import org.fest.swing.fixture.JTableFixture

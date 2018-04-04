@@ -1,6 +1,6 @@
-package engine.extensions
+package engine.helpers
 
-import engine.extensions.ColumnHeaderPart.*
+import engine.helpers.ColumnHeaderPart.*
 import org.fest.swing.awt.AWT.translate
 import org.fest.swing.core.MouseButton.LEFT_BUTTON
 import org.fest.swing.fixture.JTableFixture

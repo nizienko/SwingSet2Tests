@@ -40,27 +40,24 @@ data class TargetApplication(
                     val main = clazz.getMethod("main", Array<String>::class.java)
                     main.invoke(null, arrayOf<Any>(*arrayOf<String>()))
                 } catch (e: ClassNotFoundException) {
-                    throw IllegalArgumentException("Bad className $className defined in config", e)
+                    throw IllegalArgumentException("Bad className $className defined in Config.kt", e)
                 } catch (e: NoSuchMethodException) {
                     throw IllegalArgumentException("$className doesn't contains main()", e)
                 }
             })
 
             thread!!.start()
-
             robot = BasicRobot.robotWithCurrentAwtHierarchy()
             appFrame = WindowFinder.findFrame(frameMatcher).using(robot)
         }
     }
 
 
-    fun stop() {
-        synchronized(this) {
-            robot?.cleanUp()
-            robot = null
-            appFrame = null
-            thread?.join()
-            thread = null
-        }
+    fun stop() = synchronized(this) {
+        robot?.cleanUp()
+        robot = null
+        appFrame = null
+        thread?.join()
+        thread = null
     }
 }

@@ -1,6 +1,5 @@
-package engine.extensions
+package engine.helpers
 
-import engine.helpers.goingTo
 import org.fest.swing.core.MouseButton
 import org.fest.swing.core.Robot
 import java.awt.Point

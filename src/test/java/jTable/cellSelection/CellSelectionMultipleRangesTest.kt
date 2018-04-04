@@ -1,8 +1,8 @@
 package jTable.cellSelection
 
-import engine.extensions.dragColumnToAnother
 import engine.helpers.checkCellsSelection
 import engine.helpers.clickCells
+import engine.helpers.dragColumnToAnother
 import jTable.JTableTestSuite
 import org.junit.BeforeClass
 import org.junit.Test

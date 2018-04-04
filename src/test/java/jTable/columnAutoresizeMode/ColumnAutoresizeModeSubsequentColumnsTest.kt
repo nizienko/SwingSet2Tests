@@ -1,6 +1,6 @@
 package jTable.columnAutoresizeMode
 
-import engine.extensions.*
+import engine.helpers.*
 import jTable.JTableTestSuite
 import org.amshove.kluent.shouldEqual
 import org.fest.swing.core.MouseButton

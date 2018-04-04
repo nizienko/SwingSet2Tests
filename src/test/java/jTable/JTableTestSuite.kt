@@ -8,7 +8,6 @@ import swingSet2.SwingSet2
 
 abstract class JTableTestSuite {
     companion object {
-
         @JvmStatic
         @BeforeClass
         fun beforeClass(): Unit = with(SwingSet2.topToolBar) {
