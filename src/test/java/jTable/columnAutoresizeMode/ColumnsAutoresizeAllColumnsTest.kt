@@ -94,7 +94,7 @@ class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
             columnWidthsAfter[it] shouldBeBetween columnWidthsBefore[it] and columnWidthsBefore[it] + 5
         }
         (4..5).forEach {
-            columnWidthsAfter[it] shouldBeBetween columnWidthsBefore[it] + 20 and columnWidthsBefore[it] + 25
+            columnWidthsAfter[it] shouldBeBetween columnWidthsBefore[it] + 15 and columnWidthsBefore[it] + 25
         }
     }
 

@@ -32,6 +32,14 @@ class JTablePanel {
         comboBox(matcher { it.getItemAt(1).toString() == "Column boundaries" })
     }
 
+    val interCellSpacingSlider by finder {
+        slider(matcher { it.maximum == 10 })
+    }
+
+    val rowHeightSlider by finder {
+        slider(matcher { it.maximum == 100 })
+    }
+
     val table by finder {
         table()
     }
