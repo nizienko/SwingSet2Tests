@@ -48,6 +48,30 @@ class JTablePanel {
         button(matcher { it.text == "Print" })
     }
 
+    val fitWidthModeComboBox by finder {
+        checkBox(matcher { it.text == "Fit Width" })
+    }
+
+    val printingHeaderTextField by finder {
+        textBox(matcher {
+            if (it.parent.componentCount == 5) {
+                it == it.parent.getComponent(1)
+            } else {
+                false
+            }
+        })
+    }
+
+    val printingFooterTextField by finder {
+        textBox(matcher {
+            if (it.parent.componentCount == 5) {
+                it == it.parent.getComponent(3)
+            } else {
+                false
+            }
+        })
+    }
+
     val printingResult by finder {
         dialog(matcher { it.title == "Printing Result" && it.isShowing })
     }
