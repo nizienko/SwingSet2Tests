@@ -43,4 +43,12 @@ class JTablePanel {
     val table by finder {
         table()
     }
+
+    val printButton by finder {
+        button(matcher { it.text == "Print" })
+    }
+
+    val printingResult by finder {
+        dialog(matcher { it.title == "Printing Result" && it.isShowing })
+    }
 }

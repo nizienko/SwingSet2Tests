@@ -2,7 +2,7 @@ SwingSet2 - JTable demo
 
 The project demonstrates how can you use FEST library with kotlin.
 It contains set of tests which cover 'JTable demo' panel of SwingSet2 demo application form 'JDK Demos and Samples'
-You can run tests separately using idea runner.
+You can run tests separately using idea runner. To run printing tests you need to add '-Xbootclasspath/a:stubs/PrintJobService.jar'.
 Also you can run all tests via maven: 'mvn test' (or just click 'test' in maven projects window)
 
 You can easily use the project to test your application.

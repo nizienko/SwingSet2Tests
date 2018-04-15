@@ -12,7 +12,6 @@
         <kotlin.version>1.2.31</kotlin.version>
     </properties>
 
-
     <dependencies>
         <dependency>
             <groupId>org.easytesting</groupId>
@@ -39,6 +38,13 @@
             <groupId>org.amshove.kluent</groupId>
             <artifactId>kluent</artifactId>
             <version>1.35</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.nizienko</groupId>
+            <artifactId>PrintJobService</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/stubs/PrintJobService.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -94,6 +100,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <argLine>-Xbootclasspath/a:stubs/PrintJobService.jar</argLine>
+                </configuration>
             </plugin>
         </plugins>
     </build>
