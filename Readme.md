@@ -4,9 +4,9 @@ The project demonstrates how can you use FEST library with kotlin.
 It contains set of tests which cover 'JTable demo' panel of SwingSet2 demo application form 'JDK Demos and Samples'
 
 Requirements:
-    - Ubuntu 16.04 / Windows
-    - jdk 1.8
-    - english keyboard layout
+  - Ubuntu 16.04 / Windows
+  - jdk 1.8
+  - english keyboard layout
 
 You can run tests separately using idea runner.
 Also you can run all tests via maven: 'mvn test' (or just click 'test' in maven projects window)
