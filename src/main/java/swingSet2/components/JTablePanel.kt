@@ -8,7 +8,7 @@ class JTablePanel {
         checkBox(matcher { it.text == "Reordering allowed" })
     }
 
-    val horizonalLinesCheckBox by finder {
+    val horizontalLinesCheckBox by finder {
         checkBox(matcher { it.text == "Horiz. Lines" })
     }
 

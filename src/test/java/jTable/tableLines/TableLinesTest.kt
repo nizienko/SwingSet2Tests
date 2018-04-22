@@ -10,13 +10,13 @@ class TableLinesTest : JTableTestSuite() {
 
     @Test
     fun horizontalLinesShouldBeVisible(): Unit = with(SwingSet2.jTablePanel) {
-        horizonalLinesCheckBox.check()
+        horizontalLinesCheckBox.check()
         table.component().showHorizontalLines.shouldBeTrue()
     }
 
     @Test
     fun horizontalLinesShouldBeHidden(): Unit = with(SwingSet2.jTablePanel) {
-        horizonalLinesCheckBox.uncheck()
+        horizontalLinesCheckBox.uncheck()
         table.component().showHorizontalLines.shouldBeFalse()
     }
 
