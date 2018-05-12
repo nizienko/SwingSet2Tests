@@ -1,12 +1,12 @@
 package jTable.cellSelection
 
+import configuration.app
 import engine.helpers.checkCellsSelection
 import engine.helpers.clickCells
 import engine.helpers.dragColumnToAnother
 import jTable.JTableTestSuite
 import org.junit.BeforeClass
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.event.KeyEvent
 
 class CellSelectionMultipleRangesTest : JTableTestSuite() {
@@ -14,12 +14,12 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
         @JvmStatic
         @BeforeClass
         fun setSingleSelectionMode() {
-            SwingSet2.jTablePanel.selectionModeComboBox.selectItem("Multiple ranges")
+            app.pageObject.jTablePanel.selectionModeComboBox.selectItem("Multiple ranges")
         }
     }
 
     @Test
-    fun noSelectedCellsWhenComboBoxesUnchecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun noSelectedCellsWhenComboBoxesUnchecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.uncheck()
 
@@ -33,7 +33,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
     }
 
     @Test
-    fun multipleRowsSelectedPressingControl(): Unit = with(SwingSet2.jTablePanel) {
+    fun multipleRowsSelectedPressingControl(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -57,7 +57,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
     }
 
     @Test
-    fun multipleRowsSelectedPressingShift(): Unit = with(SwingSet2.jTablePanel) {
+    fun multipleRowsSelectedPressingShift(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -81,7 +81,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
     }
 
     @Test
-    fun multipleRowRangesSelectedPressingControlAndShift(): Unit = with(SwingSet2.jTablePanel) {
+    fun multipleRowRangesSelectedPressingControlAndShift(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -110,7 +110,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
 
 
     @Test
-    fun unselectMiddleRows(): Unit = with(SwingSet2.jTablePanel) {
+    fun unselectMiddleRows(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -134,7 +134,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
     }
 
     @Test
-    fun sortingShouldKeepSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun sortingShouldKeepSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -161,7 +161,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
     }
 
     @Test
-    fun multipleColumnSelectedPressingControlAndShift(): Unit = with(SwingSet2.jTablePanel) {
+    fun multipleColumnSelectedPressingControlAndShift(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
 
@@ -186,7 +186,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
     }
 
     @Test
-    fun unselectMiddleColumns(): Unit = with(SwingSet2.jTablePanel) {
+    fun unselectMiddleColumns(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
 
@@ -211,7 +211,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
     }
 
     @Test
-    fun reorderingKeepsColumnsSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun reorderingKeepsColumnsSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         reorderingAllowedCheckBox.check()
@@ -229,7 +229,7 @@ class CellSelectionMultipleRangesTest : JTableTestSuite() {
     }
 
     @Test
-    fun multipleRangeCellsSelectedPressingShiftAndControl(): Unit = with(SwingSet2.jTablePanel) {
+    fun multipleRangeCellsSelectedPressingShiftAndControl(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
 

@@ -1,5 +1,6 @@
 package jTable.cellSelection
 
+import configuration.app
 import engine.helpers.checkCellsSelection
 import engine.helpers.clickCells
 import engine.helpers.dragColumnToAnother
@@ -7,7 +8,6 @@ import jTable.JTableTestSuite
 import org.fest.swing.data.TableCell
 import org.junit.BeforeClass
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.event.KeyEvent
 
 class CellSelectionOneRangeModeTest : JTableTestSuite() {
@@ -15,12 +15,12 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
         @JvmStatic
         @BeforeClass
         fun setSingleSelectionMode() {
-            SwingSet2.jTablePanel.selectionModeComboBox.selectItem("One range")
+            app.pageObject.jTablePanel.selectionModeComboBox.selectItem("One range")
         }
     }
 
     @Test
-    fun noSelectedCellsWhenComboBoxesUnchecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun noSelectedCellsWhenComboBoxesUnchecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.uncheck()
 
@@ -34,7 +34,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneRangeRowSelectedPressingControl(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneRangeRowSelectedPressingControl(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -57,7 +57,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneRangeColumnsSelectedPressingShift(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneRangeColumnsSelectedPressingShift(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -80,7 +80,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun viceVersaSelectionPressingShift(): Unit = with(SwingSet2.jTablePanel) {
+    fun viceVersaSelectionPressingShift(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -102,7 +102,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun viceVersaSelectionPressingControl(): Unit = with(SwingSet2.jTablePanel) {
+    fun viceVersaSelectionPressingControl(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -124,7 +124,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun sortingDescKeepsRowSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun sortingDescKeepsRowSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -152,7 +152,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun sortingResetRowSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun sortingResetRowSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -178,7 +178,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneRangeColumnsSelectedPressingControl(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneRangeColumnsSelectedPressingControl(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
 
@@ -201,7 +201,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneRangeRowSelectedPressingShift(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneRangeRowSelectedPressingShift(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
 
@@ -220,7 +220,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun reorderingNeighborsKeepsColumnsSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun reorderingNeighborsKeepsColumnsSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         reorderingAllowedCheckBox.check()
@@ -238,7 +238,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun reorderingNotNeighborsLostColumnsSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun reorderingNotNeighborsLostColumnsSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         reorderingAllowedCheckBox.check()
@@ -257,7 +257,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun injectionBetweenSelectedLostColumnsSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun injectionBetweenSelectedLostColumnsSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         reorderingAllowedCheckBox.check()
@@ -276,7 +276,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun selectRowsWithHotKey(): Unit = with(SwingSet2.jTablePanel) {
+    fun selectRowsWithHotKey(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
         table.clickCells {
@@ -291,7 +291,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun selectColumnsWithHotKey(): Unit = with(SwingSet2.jTablePanel) {
+    fun selectColumnsWithHotKey(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         table.clickCells {
@@ -304,7 +304,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun selectCellsWithHotKey(): Unit = with(SwingSet2.jTablePanel) {
+    fun selectCellsWithHotKey(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.clickCells {
@@ -317,7 +317,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun cellsWithHotKeyCantSelectedWhenBothCheckboxesSwitchedOff(): Unit = with(SwingSet2.jTablePanel) {
+    fun cellsWithHotKeyCantSelectedWhenBothCheckboxesSwitchedOff(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.uncheck()
         table.clickCells {
@@ -330,7 +330,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneRangeCellsSelectedPressingControl(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneRangeCellsSelectedPressingControl(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
 
@@ -357,7 +357,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneRangeCellsSelectedPressingShiftAndControl(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneRangeCellsSelectedPressingShiftAndControl(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
 
@@ -387,7 +387,7 @@ class CellSelectionOneRangeModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun unSelectionPartOfSelectedCellsWithControl(): Unit = with(SwingSet2.jTablePanel) {
+    fun unSelectionPartOfSelectedCellsWithControl(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
 

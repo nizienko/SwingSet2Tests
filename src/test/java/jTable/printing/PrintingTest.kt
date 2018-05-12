@@ -2,6 +2,7 @@ package jTable.printing
 
 import com.github.nizienko.test.swing.printer.PrinterJobStub
 import com.nhaarman.mockito_kotlin.*
+import configuration.app
 import engine.helpers.TablePrintableParser
 import engine.helpers.matcher
 import jTable.JTableTestSuite
@@ -9,7 +10,6 @@ import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.BeforeClass
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.print.PrinterJob
 import javax.swing.JTable.PrintMode.FIT_WIDTH
 import javax.swing.JTable.PrintMode.NORMAL
@@ -25,7 +25,7 @@ class PrintingTest : JTableTestSuite() {
     }
 
     @Test
-    fun printingComplete(): Unit = with(SwingSet2.jTablePanel) {
+    fun printingComplete(): Unit = with(app.pageObject.jTablePanel) {
         val printerJob = mock<PrinterJob> {
             on { printDialog() } doReturn true
         }
@@ -40,7 +40,7 @@ class PrintingTest : JTableTestSuite() {
     }
 
     @Test
-    fun printingCancelled(): Unit = with(SwingSet2.jTablePanel) {
+    fun printingCancelled(): Unit = with(app.pageObject.jTablePanel) {
         val printerJob = mock<PrinterJob> {
             on { printDialog() } doReturn false
         }
@@ -55,7 +55,7 @@ class PrintingTest : JTableTestSuite() {
     }
 
     @Test
-    fun fitWidthOn(): Unit = with(SwingSet2.jTablePanel) {
+    fun fitWidthOn(): Unit = with(app.pageObject.jTablePanel) {
         val printerJob = mock<PrinterJob> {
             on { printDialog() } doReturn true
         }
@@ -69,13 +69,13 @@ class PrintingTest : JTableTestSuite() {
                 check {
                     TablePrintableParser(it).apply {
                         printMode shouldBe FIT_WIDTH
-                        table shouldBe SwingSet2.jTablePanel.table.component()
+                        table shouldBe app.pageObject.jTablePanel.table.component()
                     }
                 })
     }
 
     @Test
-    fun fitWidthOff(): Unit = with(SwingSet2.jTablePanel) {
+    fun fitWidthOff(): Unit = with(app.pageObject.jTablePanel) {
         val printerJob = mock<PrinterJob> {
             on { printDialog() } doReturn true
         }
@@ -89,13 +89,13 @@ class PrintingTest : JTableTestSuite() {
                 check {
                     TablePrintableParser(it).apply {
                         printMode shouldBe NORMAL
-                        table shouldBe SwingSet2.jTablePanel.table.component()
+                        table shouldBe app.pageObject.jTablePanel.table.component()
                     }
                 })
     }
 
     @Test
-    fun checkFooter(): Unit = with(SwingSet2.jTablePanel) {
+    fun checkFooter(): Unit = with(app.pageObject.jTablePanel) {
         val printerJob = mock<PrinterJob> {
             on { printDialog() } doReturn true
         }
@@ -109,13 +109,13 @@ class PrintingTest : JTableTestSuite() {
                 check {
                     TablePrintableParser(it).apply {
                         footerFormat.toPattern() shouldBeEqualTo "Test footer {0}"
-                        table shouldBe SwingSet2.jTablePanel.table.component()
+                        table shouldBe app.pageObject.jTablePanel.table.component()
                     }
                 })
     }
 
     @Test
-    fun checkHeader(): Unit = with(SwingSet2.jTablePanel) {
+    fun checkHeader(): Unit = with(app.pageObject.jTablePanel) {
         val printerJob = mock<PrinterJob> {
             on { printDialog() } doReturn true
         }
@@ -129,7 +129,7 @@ class PrintingTest : JTableTestSuite() {
                 check {
                     TablePrintableParser(it).apply {
                         headerFormat.toPattern() shouldBeEqualTo "Test header {0}"
-                        table shouldBe SwingSet2.jTablePanel.table.component()
+                        table shouldBe app.pageObject.jTablePanel.table.component()
                     }
                 })
     }

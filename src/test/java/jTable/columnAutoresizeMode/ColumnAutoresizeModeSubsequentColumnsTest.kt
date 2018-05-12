@@ -1,12 +1,12 @@
 package jTable.columnAutoresizeMode
 
+import configuration.app
 import engine.helpers.*
 import jTable.JTableTestSuite
 import org.amshove.kluent.shouldEqual
 import org.fest.swing.core.MouseButton
 import org.junit.BeforeClass
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.Point
 
 
@@ -15,12 +15,12 @@ class ColumnAutoresizeModeSubsequentColumnsTest : JTableTestSuite() {
         @JvmStatic
         @BeforeClass
         fun switchAutoresizeOff() {
-            SwingSet2.jTablePanel.autoresizeModeComboBox.selectItem("Subsequent columns")
+            app.pageObject.jTablePanel.autoresizeModeComboBox.selectItem("Subsequent columns")
         }
     }
 
     @Test
-    fun allColumnsResized(): Unit = with(SwingSet2.jTablePanel) {
+    fun allColumnsResized(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
         val columnsRatios = table.columnsSizeRatio()
 
@@ -43,7 +43,7 @@ class ColumnAutoresizeModeSubsequentColumnsTest : JTableTestSuite() {
     }
 
     @Test
-    fun allColumnsAtRightSideResized(): Unit = with(SwingSet2.jTablePanel) {
+    fun allColumnsAtRightSideResized(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
         val columnsRatios = table.columnsSizeRatio()
 
@@ -69,7 +69,7 @@ class ColumnAutoresizeModeSubsequentColumnsTest : JTableTestSuite() {
     }
 
     @Test
-    fun lastTwoColumnsSideResized(): Unit = with(SwingSet2.jTablePanel) {
+    fun lastTwoColumnsSideResized(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {

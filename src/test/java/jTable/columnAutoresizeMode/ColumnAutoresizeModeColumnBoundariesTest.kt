@@ -1,12 +1,12 @@
 package jTable.columnAutoresizeMode
 
+import configuration.app
 import engine.helpers.*
 import jTable.JTableTestSuite
 import org.amshove.kluent.shouldEqual
 import org.fest.swing.core.MouseButton
 import org.junit.BeforeClass
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.Point
 
 class ColumnAutoresizeModeColumnBoundariesTest : JTableTestSuite() {
@@ -14,16 +14,17 @@ class ColumnAutoresizeModeColumnBoundariesTest : JTableTestSuite() {
         @JvmStatic
         @BeforeClass
         fun switchAutoresizeOff() {
-            SwingSet2.jTablePanel.autoresizeModeComboBox.selectItem("Column boundaries")
+            app.pageObject.jTablePanel.autoresizeModeComboBox.selectItem("Column boundaries")
         }
     }
 
     @Test
-    fun onlyTwoColumnsResized(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyTwoColumnsResized(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {
-            val targetPoint = getColumnHeaderPoint(0, ColumnHeaderPart.RIGHT).let { Point(it.x + 20, it.y) }
+            val targetPoint = getColumnHeaderPoint(0, ColumnHeaderPart.RIGHT)
+                    .let { Point(it.x + 20, it.y) }
             moveMouseToColumnHeader(0, ColumnHeaderPart.RIGHT)
             with(robot) {
                 pressingMouse(MouseButton.LEFT_BUTTON) {
@@ -42,7 +43,7 @@ class ColumnAutoresizeModeColumnBoundariesTest : JTableTestSuite() {
     }
 
     @Test
-    fun minimizeLeftColumnWithOutOffAppMoving(): Unit = with(SwingSet2.jTablePanel) {
+    fun minimizeLeftColumnWithOutOffAppMoving(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {
@@ -68,7 +69,7 @@ class ColumnAutoresizeModeColumnBoundariesTest : JTableTestSuite() {
     }
 
     @Test
-    fun minimizeRightColumnWithOutOffAppMoving(): Unit = with(SwingSet2.jTablePanel) {
+    fun minimizeRightColumnWithOutOffAppMoving(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {

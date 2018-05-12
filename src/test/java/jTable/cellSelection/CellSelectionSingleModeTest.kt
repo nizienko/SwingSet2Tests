@@ -1,5 +1,6 @@
 package jTable.cellSelection
 
+import configuration.app
 import engine.helpers.checkCellsSelection
 import engine.helpers.clickCells
 import engine.helpers.dragColumnToAnother
@@ -7,7 +8,6 @@ import jTable.JTableTestSuite
 import org.fest.swing.data.TableCell
 import org.junit.BeforeClass
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.event.KeyEvent
 
 class CellSelectionSingleModeTest : JTableTestSuite() {
@@ -16,13 +16,13 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
         @JvmStatic
         @BeforeClass
         fun setSingleSelectionMode() {
-            SwingSet2.jTablePanel.selectionModeComboBox.selectItem("Single")
+            app.pageObject.jTablePanel.selectionModeComboBox.selectItem("Single")
         }
     }
 
 
     @Test
-    fun noSelectedCellsWhenComboBoxesUnchecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun noSelectedCellsWhenComboBoxesUnchecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.uncheck()
 
@@ -35,7 +35,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneColumnSelectedWhenColumnComboBoxChecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneColumnSelectedWhenColumnComboBoxChecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
 
@@ -53,7 +53,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneColumnFromRangeSelectedWhenColumnComboBoxChecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneColumnFromRangeSelectedWhenColumnComboBoxChecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
 
@@ -71,7 +71,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun columnUnSelectedWithSecondClickWhenColumnComboBoxChecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun columnUnSelectedWithSecondClickWhenColumnComboBoxChecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
 
@@ -87,7 +87,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun columnUnSelectedWithSecondClickOnColumn(): Unit = with(SwingSet2.jTablePanel) {
+    fun columnUnSelectedWithSecondClickOnColumn(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
 
@@ -103,7 +103,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun reorderingKeepsColumnSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun reorderingKeepsColumnSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         reorderingAllowedCheckBox.check()
@@ -120,7 +120,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun reorderingFromAnotherColumnKeepsColumnSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun reorderingFromAnotherColumnKeepsColumnSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         reorderingAllowedCheckBox.check()
@@ -138,7 +138,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
 
 
     @Test
-    fun sortingKeepsColumnSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun sortingKeepsColumnSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         table.tableHeader().clickColumn(0)
@@ -154,7 +154,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun sortingByAnotherColumnKeepsColumnSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun sortingByAnotherColumnKeepsColumnSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         table.tableHeader().clickColumn(0)
@@ -170,7 +170,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneRowSelectedWhenRowComboBoxChecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneRowSelectedWhenRowComboBoxChecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -187,7 +187,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneRowFromRangeSelectedWhenRowComboBoxChecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneRowFromRangeSelectedWhenRowComboBoxChecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -205,7 +205,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun rowUnSelectedWithSecondClickWhenRowComboBoxChecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun rowUnSelectedWithSecondClickWhenRowComboBoxChecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -221,7 +221,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun rowUnSelectedWithSecondClickOnRow(): Unit = with(SwingSet2.jTablePanel) {
+    fun rowUnSelectedWithSecondClickOnRow(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
 
@@ -237,7 +237,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun reorderingKeepsRowSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun reorderingKeepsRowSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
         reorderingAllowedCheckBox.check()
@@ -252,7 +252,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun sortingKeepsRowSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun sortingKeepsRowSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
         table.tableHeader().clickColumn(0)
@@ -271,7 +271,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneCellSelectedWhenBothComboBoxesChecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneCellSelectedWhenBothComboBoxesChecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
 
@@ -289,7 +289,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun onlyOneCellFromRangeSelectedWhenBothComboBoxesChecked(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneCellFromRangeSelectedWhenBothComboBoxesChecked(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
 
@@ -309,7 +309,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun cellUnSelectedWithSecondClick(): Unit = with(SwingSet2.jTablePanel) {
+    fun cellUnSelectedWithSecondClick(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
 
@@ -326,7 +326,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
 
 
     @Test
-    fun reorderingKeepsCellSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun reorderingKeepsCellSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         reorderingAllowedCheckBox.check()
@@ -342,7 +342,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun reorderingFromAnotherColumnKeepsCellSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun reorderingFromAnotherColumnKeepsCellSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         reorderingAllowedCheckBox.check()
@@ -358,7 +358,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun sortingKeepsCellSelection(): Unit = with(SwingSet2.jTablePanel) {
+    fun sortingKeepsCellSelection(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.tableHeader().clickColumn(0)
@@ -377,7 +377,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun convertCellToColumn(): Unit = with(SwingSet2.jTablePanel) {
+    fun convertCellToColumn(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.clickCells {
@@ -391,7 +391,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun convertColumnToCell(): Unit = with(SwingSet2.jTablePanel) {
+    fun convertColumnToCell(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         table.clickCells {
@@ -405,7 +405,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun convertCellToRow(): Unit = with(SwingSet2.jTablePanel) {
+    fun convertCellToRow(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.clickCells {
@@ -419,7 +419,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun convertRowToCell(): Unit = with(SwingSet2.jTablePanel) {
+    fun convertRowToCell(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
         table.clickCells {
@@ -433,7 +433,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun unSelectWithCheckBoxes(): Unit = with(SwingSet2.jTablePanel) {
+    fun unSelectWithCheckBoxes(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.clickCells {
@@ -447,7 +447,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun switchOnCheckBoxes(): Unit = with(SwingSet2.jTablePanel) {
+    fun switchOnCheckBoxes(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.uncheck()
         table.clickCells {
@@ -461,7 +461,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun lastCellSelectedWithHotKey(): Unit = with(SwingSet2.jTablePanel) {
+    fun lastCellSelectedWithHotKey(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.check()
         table.clickCells {
@@ -478,7 +478,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun lastColumnSelectedWithHotKey(): Unit = with(SwingSet2.jTablePanel) {
+    fun lastColumnSelectedWithHotKey(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.uncheck()
         columnSelectionCheckBox.check()
         table.clickCells {
@@ -492,7 +492,7 @@ class CellSelectionSingleModeTest : JTableTestSuite() {
     }
 
     @Test
-    fun lastRowSelectedWithHotKey(): Unit = with(SwingSet2.jTablePanel) {
+    fun lastRowSelectedWithHotKey(): Unit = with(app.pageObject.jTablePanel) {
         rowSelectionCheckBox.check()
         columnSelectionCheckBox.uncheck()
         table.clickCells {

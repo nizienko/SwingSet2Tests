@@ -1,12 +1,12 @@
 package jTable.columnAutoresizeMode
 
+import configuration.app
 import engine.helpers.*
 import jTable.JTableTestSuite
 import org.amshove.kluent.shouldEqual
 import org.fest.swing.core.MouseButton
 import org.junit.BeforeClass
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.Point
 
 class ColumnAutoresizeLastColumnTest: JTableTestSuite() {
@@ -14,12 +14,12 @@ class ColumnAutoresizeLastColumnTest: JTableTestSuite() {
         @JvmStatic
         @BeforeClass
         fun switchAutoresizeOff() {
-            SwingSet2.jTablePanel.autoresizeModeComboBox.selectItem("Last column")
+            app.pageObject.jTablePanel.autoresizeModeComboBox.selectItem("Last column")
         }
     }
 
     @Test
-    fun lastColumnsResized(): Unit = with(SwingSet2.jTablePanel) {
+    fun lastColumnsResized(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {

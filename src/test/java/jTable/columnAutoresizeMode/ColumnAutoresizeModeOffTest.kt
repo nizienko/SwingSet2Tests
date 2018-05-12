@@ -1,5 +1,6 @@
 package jTable.columnAutoresizeMode
 
+import configuration.app
 import engine.helpers.*
 import engine.helpers.ColumnHeaderPart.RIGHT
 import jTable.JTableTestSuite
@@ -7,7 +8,6 @@ import org.amshove.kluent.shouldEqual
 import org.fest.swing.core.MouseButton.LEFT_BUTTON
 import org.junit.BeforeClass
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.Point
 
 class ColumnAutoresizeModeOffTest : JTableTestSuite() {
@@ -15,12 +15,12 @@ class ColumnAutoresizeModeOffTest : JTableTestSuite() {
         @JvmStatic
         @BeforeClass
         fun switchAutoresizeOff() {
-            SwingSet2.jTablePanel.autoresizeModeComboBox.selectItem("Off")
+            app.pageObject.jTablePanel.autoresizeModeComboBox.selectItem("Off")
         }
     }
 
     @Test
-    fun onlyOneColumnsResized(): Unit = with(SwingSet2.jTablePanel) {
+    fun onlyOneColumnsResized(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {
@@ -41,7 +41,7 @@ class ColumnAutoresizeModeOffTest : JTableTestSuite() {
     }
 
     @Test
-    fun minimizeColumnWithOutOffAppMoving(): Unit = with(SwingSet2.jTablePanel) {
+    fun minimizeColumnWithOutOffAppMoving(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {

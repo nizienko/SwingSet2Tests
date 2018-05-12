@@ -13,14 +13,16 @@ import java.net.URL
 import java.net.URLClassLoader
 import kotlin.concurrent.thread
 
-data class TargetApplication(
+data class TargetApplication<out D>(
         private val jarPath: String,
         private val className: String,
-        private val frameMatcher: GenericTypeMatcher<Frame>) {
+        private val frameMatcher: GenericTypeMatcher<Frame>,
+        private val applicationPageObjectSupplier: () -> D) {
 
     private var applicationThread: Thread? = null
     private var appFrame: FrameFixture? = null
     private var robot: Robot? = null
+    private var applicationPageObject: D? = null
 
     val mainFrame: FrameFixture
         get() {
@@ -28,6 +30,14 @@ data class TargetApplication(
                 start()
             }
             return appFrame!!
+        }
+
+    val pageObject: D
+        get() {
+            if (applicationPageObject == null) {
+                start()
+            }
+            return applicationPageObject!!
         }
 
 
@@ -44,6 +54,7 @@ data class TargetApplication(
             }
             robot = BasicRobot.robotWithCurrentAwtHierarchy()
             appFrame = WindowFinder.findFrame(frameMatcher).using(robot)
+            applicationPageObject = applicationPageObjectSupplier()
         }
     }
 
@@ -54,5 +65,6 @@ data class TargetApplication(
         appFrame = null
         applicationThread?.join()
         applicationThread = null
+        applicationPageObject = null
     }
 }

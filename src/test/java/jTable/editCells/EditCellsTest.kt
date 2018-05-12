@@ -1,5 +1,6 @@
 package jTable.editCells
 
+import configuration.app
 import engine.helpers.clickCells
 import engine.helpers.pressingKey
 import jTable.JTableTestSuite
@@ -8,17 +9,16 @@ import org.amshove.kluent.shouldNotEqual
 import org.fest.swing.data.TableCell
 import org.junit.After
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.event.KeyEvent.*
 import java.math.BigDecimal
 
 class EditCellsTest: JTableTestSuite() {
 
     @After
-    fun pressEscape() = SwingSet2.jTablePanel.table.robot.pressAndReleaseKey(VK_ESCAPE)
+    fun pressEscape() = app.pageObject.jTablePanel.table.robot.pressAndReleaseKey(VK_ESCAPE)
 
     @Test
-    fun editText() : Unit = with(SwingSet2.jTablePanel) {
+    fun editText(): Unit = with(app.pageObject.jTablePanel) {
         table.cell(TableCell.row(1).column(0)).doubleClick()
         with(table.robot) {
             pressingKey(VK_CONTROL) {
@@ -31,7 +31,7 @@ class EditCellsTest: JTableTestSuite() {
     }
 
     @Test
-    fun clearText(): Unit = with(SwingSet2.jTablePanel) {
+    fun clearText(): Unit = with(app.pageObject.jTablePanel) {
         table.cell(TableCell.row(2).column(0)).doubleClick()
         with(table.robot) {
             pressingKey(VK_CONTROL) {
@@ -44,7 +44,7 @@ class EditCellsTest: JTableTestSuite() {
     }
 
     @Test
-    fun cantInsertTextInNumberFormatCell(): Unit = with(SwingSet2.jTablePanel) {
+    fun cantInsertTextInNumberFormatCell(): Unit = with(app.pageObject.jTablePanel) {
         table.cell(TableCell.row(10).column(4)).doubleClick()
         with(table.robot) {
             pressingKey(VK_CONTROL) {
@@ -57,7 +57,7 @@ class EditCellsTest: JTableTestSuite() {
     }
 
     @Test
-    fun insertNumberInNumberFormatCell(): Unit = with(SwingSet2.jTablePanel) {
+    fun insertNumberInNumberFormatCell(): Unit = with(app.pageObject.jTablePanel) {
         table.cell(TableCell.row(10).column(4)).doubleClick()
         with(table.robot) {
             pressingKey(VK_CONTROL) {
@@ -72,7 +72,7 @@ class EditCellsTest: JTableTestSuite() {
 
 
     @Test
-    fun selectColor(): Unit = with(SwingSet2.jTablePanel) {
+    fun selectColor(): Unit = with(app.pageObject.jTablePanel) {
         table.cell(TableCell.row(5).column(2)).background().target().toString() shouldEqual "Black"
         table.clickCells {
             clickCell(5, 2)

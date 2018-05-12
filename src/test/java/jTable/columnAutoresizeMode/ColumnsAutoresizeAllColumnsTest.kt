@@ -1,11 +1,11 @@
 package jTable.columnAutoresizeMode
 
+import configuration.app
 import engine.helpers.*
 import jTable.JTableTestSuite
 import org.fest.swing.core.MouseButton
 import org.junit.BeforeClass
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.Point
 
 class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
@@ -13,12 +13,12 @@ class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
         @JvmStatic
         @BeforeClass
         fun switchAutoresizeOff() {
-            SwingSet2.jTablePanel.autoresizeModeComboBox.selectItem("All columns")
+            app.pageObject.jTablePanel.autoresizeModeComboBox.selectItem("All columns")
         }
     }
 
     @Test
-    fun lastTwoColumnsResizedWithColumnEditingSlowly(): Unit = with(SwingSet2.jTablePanel) {
+    fun lastTwoColumnsResizedWithColumnEditingSlowly(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {
@@ -45,7 +45,7 @@ class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
     }
 
     @Test
-    fun allColumnsResizedWithColumnEditingQuickly(): Unit = with(SwingSet2.jTablePanel) {
+    fun allColumnsResizedWithColumnEditingQuickly(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {
@@ -71,7 +71,7 @@ class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
     }
 
     @Test
-    fun lastTwoColumnsResizedWithColumnEditingSlowlyDecreasing(): Unit = with(SwingSet2.jTablePanel) {
+    fun lastTwoColumnsResizedWithColumnEditingSlowlyDecreasing(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {
@@ -99,7 +99,7 @@ class ColumnsAutoresizeAllColumnsTest : JTableTestSuite() {
     }
 
     @Test
-    fun allColumnsResizedWithColumnEditingQuicklyDecreasing(): Unit = with(SwingSet2.jTablePanel) {
+    fun allColumnsResizedWithColumnEditingQuicklyDecreasing(): Unit = with(app.pageObject.jTablePanel) {
         val columnWidthsBefore = table.getColumnsWidth()
 
         with(table) {

@@ -5,7 +5,7 @@ import org.fest.swing.fixture.FrameFixture
 import kotlin.reflect.KProperty
 
 fun <T> finder(frameSupplier: () -> FrameFixture = { app.mainFrame },
-               cachingEnabled: Boolean = false,
+               cachingEnabled: Boolean = true,
                findFunc: FrameFixture.() -> T?): ComponentFinderDelegate<T> =
         ComponentFinderDelegate(frameSupplier, cachingEnabled, findFunc)
 

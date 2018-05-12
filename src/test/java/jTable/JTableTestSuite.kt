@@ -4,13 +4,12 @@ import configuration.app
 import engine.helpers.waiting
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import swingSet2.SwingSet2
 
 abstract class JTableTestSuite {
     companion object {
         @JvmStatic
         @BeforeClass
-        fun beforeClass(): Unit = with(SwingSet2.topToolBar) {
+        fun beforeClass(): Unit = with(app.pageObject.topToolBar) {
             waiting { jTreeButton.requireVisible() }
             jTableButton.click()
         }

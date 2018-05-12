@@ -1,16 +1,16 @@
 package jTable.columnReordering
 
+import configuration.app
 import engine.helpers.*
 import jTable.JTableTestSuite
 import org.fest.swing.core.MouseButton.LEFT_BUTTON
 import org.junit.Test
-import swingSet2.SwingSet2
 import java.awt.Point
 
 class ReorderingTest : JTableTestSuite() {
 
     @Test
-    fun checkReorderingAdjacentColumns(): Unit = with(SwingSet2.jTablePanel) {
+    fun checkReorderingAdjacentColumns(): Unit = with(app.pageObject.jTablePanel) {
         val columnNamesBefore = table.getColumnNames()
 
         reorderingAllowedCheckBox.check()
@@ -24,7 +24,7 @@ class ReorderingTest : JTableTestSuite() {
     }
 
     @Test
-    fun checkReorderingThroughSeveralColumns(): Unit = with(SwingSet2.jTablePanel) {
+    fun checkReorderingThroughSeveralColumns(): Unit = with(app.pageObject.jTablePanel) {
         val columnNamesBefore = table.getColumnNames()
 
         reorderingAllowedCheckBox.check()
@@ -41,7 +41,7 @@ class ReorderingTest : JTableTestSuite() {
     }
 
     @Test
-    fun checkReorderingIsOff(): Unit = with(SwingSet2.jTablePanel) {
+    fun checkReorderingIsOff(): Unit = with(app.pageObject.jTablePanel) {
         val columnNamesBefore = table.getColumnNames()
 
         reorderingAllowedCheckBox.uncheck()
@@ -55,7 +55,7 @@ class ReorderingTest : JTableTestSuite() {
     }
 
     @Test
-    fun checkReorderingWhenMovingOutOfFrame(): Unit = with(SwingSet2.jTablePanel) {
+    fun checkReorderingWhenMovingOutOfFrame(): Unit = with(app.pageObject.jTablePanel) {
         val columnNamesBefore = table.getColumnNames()
 
         reorderingAllowedCheckBox.check()
@@ -78,7 +78,7 @@ class ReorderingTest : JTableTestSuite() {
     }
 
     @Test
-    fun checkBoundaryValueDoNotReorder(): Unit = with(SwingSet2.jTablePanel) {
+    fun checkBoundaryValueDoNotReorder(): Unit = with(app.pageObject.jTablePanel) {
         val columnNamesBefore = table.getColumnNames()
 
         reorderingAllowedCheckBox.check()
@@ -104,7 +104,7 @@ class ReorderingTest : JTableTestSuite() {
     }
 
     @Test
-    fun checkBoundaryValueReorder(): Unit = with(SwingSet2.jTablePanel) {
+    fun checkBoundaryValueReorder(): Unit = with(app.pageObject.jTablePanel) {
         val columnNamesBefore = table.getColumnNames()
 
         reorderingAllowedCheckBox.check()

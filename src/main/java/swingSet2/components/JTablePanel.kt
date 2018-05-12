@@ -42,7 +42,7 @@ class JTablePanel {
         slider(matcher { it.maximum == 100 })
     }
 
-    val table by finder {
+    val table by finder(cachingEnabled = false) {
         table()
     }
 
@@ -84,7 +84,7 @@ class JTablePanel {
         })
     }
 
-    val printingResult by finder {
+    val printingResult by finder(cachingEnabled = false) {
         dialog(matcher { it.title == "Printing Result" && it.isShowing })
     }
 }
