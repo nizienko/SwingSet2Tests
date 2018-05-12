@@ -1,10 +1,12 @@
 package engine
 
+
 import org.fest.swing.core.BasicRobot
 import org.fest.swing.core.GenericTypeMatcher
 import org.fest.swing.core.Robot
 import org.fest.swing.finder.WindowFinder
 import org.fest.swing.fixture.FrameFixture
+import org.fest.swing.launcher.ApplicationLauncher.application
 import java.awt.Frame
 import java.io.File
 import java.net.URL
@@ -17,10 +19,7 @@ data class TargetApplication(
         private val frameMatcher: GenericTypeMatcher<Frame>) {
 
     private var applicationThread: Thread? = null
-
-    @Volatile
     private var appFrame: FrameFixture? = null
-
     private var robot: Robot? = null
 
     val mainFrame: FrameFixture
@@ -32,18 +31,15 @@ data class TargetApplication(
         }
 
 
-    fun start() = synchronized(this) {
+    fun start() {
         if (applicationThread == null) {
             applicationThread = thread {
                 val classLoader = URLClassLoader(arrayOf<URL>(File(jarPath).toURI().toURL()))
                 try {
                     val clazz = classLoader.loadClass(className)
-                    val main = clazz.getMethod("main", Array<String>::class.java)
-                    main.invoke(null, arrayOf<Any>(*arrayOf<String>()))
+                    application(clazz).start()
                 } catch (e: ClassNotFoundException) {
                     throw IllegalArgumentException("Bad className $className defined in Config.kt", e)
-                } catch (e: NoSuchMethodException) {
-                    throw IllegalArgumentException("$className doesn't contains main()", e)
                 }
             }
             robot = BasicRobot.robotWithCurrentAwtHierarchy()
@@ -52,7 +48,7 @@ data class TargetApplication(
     }
 
 
-    fun stop() = synchronized(this) {
+    fun stop() {
         robot?.cleanUp()
         robot = null
         appFrame = null
