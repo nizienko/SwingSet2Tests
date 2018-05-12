@@ -9,13 +9,14 @@ import java.awt.Frame
 import java.io.File
 import java.net.URL
 import java.net.URLClassLoader
+import kotlin.concurrent.thread
 
 data class TargetApplication(
         private val jarPath: String,
         private val className: String,
         private val frameMatcher: GenericTypeMatcher<Frame>) {
 
-    private var thread: Thread? = null
+    private var applicationThread: Thread? = null
 
     @Volatile
     private var appFrame: FrameFixture? = null
@@ -32,8 +33,8 @@ data class TargetApplication(
 
 
     fun start() = synchronized(this) {
-        if (thread == null) {
-            thread = Thread(Runnable {
+        if (applicationThread == null) {
+            applicationThread = thread {
                 val classLoader = URLClassLoader(arrayOf<URL>(File(jarPath).toURI().toURL()))
                 try {
                     val clazz = classLoader.loadClass(className)
@@ -44,9 +45,7 @@ data class TargetApplication(
                 } catch (e: NoSuchMethodException) {
                     throw IllegalArgumentException("$className doesn't contains main()", e)
                 }
-            })
-
-            thread!!.start()
+            }
             robot = BasicRobot.robotWithCurrentAwtHierarchy()
             appFrame = WindowFinder.findFrame(frameMatcher).using(robot)
         }
@@ -57,7 +56,7 @@ data class TargetApplication(
         robot?.cleanUp()
         robot = null
         appFrame = null
-        thread?.join()
-        thread = null
+        applicationThread?.join()
+        applicationThread = null
     }
 }
