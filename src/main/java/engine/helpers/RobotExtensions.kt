@@ -52,3 +52,10 @@ fun Robot.pressingKey(keyCode: Int, block: Robot.() -> Unit) {
     block()
     this.releaseKey(keyCode)
 }
+
+infix fun Int.goingTo(x2: Int): IntProgression =
+        if (this < x2) {
+            this..x2
+        } else {
+            this downTo x2
+        }

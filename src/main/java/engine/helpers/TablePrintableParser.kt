@@ -3,6 +3,8 @@ package engine.helpers
 import java.awt.print.Printable
 import java.text.MessageFormat
 import javax.swing.JTable
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.jvm.isAccessible
 
 class TablePrintableParser(printable: Printable) {
     private val printDelegate = printable.readProperty<Any>("printDelegatee")
@@ -19,4 +21,11 @@ class TablePrintableParser(printable: Printable) {
 
     val table
         get() = printDelegate.readProperty<JTable>("table")
+
+    @Suppress("UNCHECKED_CAST")
+    private fun <R : Any?> Any.readProperty(propertyName: String): R =
+            this.javaClass.kotlin.declaredMemberProperties
+                    .first { it.name == propertyName }
+                    .apply { isAccessible = true }.get(this) as R
 }
+
