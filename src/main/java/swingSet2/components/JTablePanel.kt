@@ -2,6 +2,8 @@ package swingSet2.components
 
 import engine.finder
 import engine.helpers.matcher
+import javax.swing.JLabel
+import javax.swing.JTextField
 
 class JTablePanel {
     val reorderingAllowedCheckBox by finder {
@@ -51,24 +53,34 @@ class JTablePanel {
     val fitWidthModeComboBox by finder {
         checkBox(matcher { it.text == "Fit Width" })
     }
-
+    /**
+     * Looking for second component in JPanel which has text 'Header' in first component
+     */
     val printingHeaderTextField by finder {
         textBox(matcher {
-            if (it.parent.componentCount == 5) {
-                it == it.parent.getComponent(1)
-            } else {
-                false
+            val firstComponent = it.parent.components[0]
+            if (firstComponent is JLabel
+                    && firstComponent.text == "Header"
+                    && it is JTextField
+                    && it == it.parent.components[1]) {
+                return@matcher true
             }
+            return@matcher false
         })
     }
-
+    /**
+     * Looking for fourth component in JPanel which has text 'Header' in first component
+     */
     val printingFooterTextField by finder {
         textBox(matcher {
-            if (it.parent.componentCount == 5) {
-                it == it.parent.getComponent(3)
-            } else {
-                false
+            val firstComponent = it.parent.components[0]
+            if (firstComponent is JLabel
+                    && firstComponent.text == "Header"
+                    && it is JTextField
+                    && it == it.parent.components[3]) {
+                return@matcher true
             }
+            return@matcher false
         })
     }
 
